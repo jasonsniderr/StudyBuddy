@@ -10,11 +10,16 @@ import SwiftUI
 struct SettingsScreen: View {
     
     @Binding var accentColor: Color
+    @AppStorage("user_name") private var userName = ""
     
     var body: some View {
         Form {
             ColorPicker("Accent Color:", selection: $accentColor)
+            TextField("User's Name:", text: $userName)
         }
     }
 }
 
+#Preview {
+    SettingsScreen(accentColor: .constant(.blue))
+}

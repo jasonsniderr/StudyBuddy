@@ -10,7 +10,8 @@ import SwiftUI
 struct BottomNavigation: View {
     
     @State private var showSettings = false
-    @State private var accentColor = Color.blue
+    @AppStorage("accent_color") private var accentColor = Color.Hex.random
+//    @State private var accentColor = Color.blue
     
     var body: some View {
         TabView {
@@ -30,9 +31,9 @@ struct BottomNavigation: View {
                     PomodoroScreen()
                 }
             }
-        .tint(accentColor)
+        .tint(Color(hex: accentColor))
         .sheet(isPresented: $showSettings) {
-            SettingsScreen(accentColor: $accentColor)
+            SettingsScreen(accentColor: $accentColor.asColorBinding())
         }
     }
 }
